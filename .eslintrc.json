@@ -40,6 +40,7 @@
       "component": true,
       "html": true
     }],
-    "react/jsx-tag-spacing": ["error", { "beforeSelfClosing": "always" }]
+    "react/jsx-tag-spacing": ["error", { "beforeSelfClosing": "always" }],
+    "@next/next/no-img-element": "off"
   }
 }
