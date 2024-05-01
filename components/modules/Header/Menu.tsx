@@ -15,11 +15,10 @@ import Logo from '@/components/elements/Logo/Logo';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import BuyersListItems from './BuyersListItems';
 import ContactsListItems from './ContactsListItems';
+import { MenuActiveLists } from '@/types/menu';
 
 const Menu = () => {
-  const [showCatalogList, setShowCatalogList] = useState(false);
-  const [showBuyersList, setShowBuyersList] = useState(false);
-  const [showContactsList, setShowContactsList] = useState(false);
+  const [activeList, setActiveList] = useState<MenuActiveLists | null>(null);
   const menuIsOpen = useUnit($menuIsOpen);
   const { lang, translations } = useLang();
   const pathname = usePathname();
@@ -31,26 +30,14 @@ const Menu = () => {
     localStorage.setItem('lang', JSON.stringify(lang));
   };
 
-  const handleShowCatalogList = () => {
-    setShowCatalogList(true);
-    setShowBuyersList(false);
-    setShowContactsList(false);
-    console.log(showCatalogList, showBuyersList, showContactsList);
-  };
-
-  const handleShowBuyersList = () => {
-    setShowCatalogList(false);
-    setShowBuyersList(true);
-    setShowContactsList(false);
-    console.log(showCatalogList, showBuyersList, showContactsList);
-  };
-
-  const handleShowContactsList = () => {
-    setShowCatalogList(false);
-    setShowBuyersList(false);
-    setShowContactsList(true);
-    console.log(showCatalogList, showBuyersList, showContactsList);
-  };
+  const handleShowList =
+    (listName: MenuActiveLists) =>
+    // eslint-disable-next-line prettier/prettier, @typescript-eslint/no-unused-vars
+      (_event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+      // eslint-disable-next-line prettier/prettier
+        setActiveList(listName);
+      // eslint-disable-next-line prettier/prettier
+      };
 
   const handleSwitchLangToRu = () => handleSwitchLang(AllowedLangs.RU);
   const handleSwitchLangToEn = () => handleSwitchLang(AllowedLangs.EN);
@@ -174,12 +161,12 @@ const Menu = () => {
             <li className="nav-menu__list__item ">
               <button
                 className="btn-reset nav-menu__list__item__btn"
-                onMouseEnter={handleShowCatalogList}
+                onMouseEnter={handleShowList(MenuActiveLists.CatalogList)}
               >
                 {translations[lang].main_menu.catalog}
               </button>
               <AnimatePresence>
-                {showCatalogList && (
+                {activeList === MenuActiveLists.CatalogList && (
                   <motion.ul
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -259,14 +246,14 @@ const Menu = () => {
             {!isMedia640 && (
               <button
                 className="btn-reset nav-menu__list__item__btn"
-                onMouseEnter={handleShowBuyersList}
+                onMouseEnter={handleShowList(MenuActiveLists.BuyersList)}
               >
                 {translations[lang].main_menu.buyers}
               </button>
             )}
             {!isMedia640 && (
               <AnimatePresence>
-                {showBuyersList && (
+                {activeList === MenuActiveLists.BuyersList && (
                   <motion.ul
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -293,14 +280,14 @@ const Menu = () => {
             {!isMedia640 && (
               <button
                 className="btn-reset nav-menu__list__item__btn"
-                onMouseEnter={handleShowContactsList}
+                onMouseEnter={handleShowList(MenuActiveLists.ContactsList)}
               >
                 {translations[lang].main_menu.contacts}
               </button>
             )}
             {!isMedia640 && (
               <AnimatePresence>
-                {showContactsList && (
+                {activeList === MenuActiveLists.ContactsList && (
                   <motion.ul
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
