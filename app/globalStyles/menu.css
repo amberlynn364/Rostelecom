@@ -226,6 +226,7 @@
 
 .nav-menu__accordion__item__list__item:not(:last-child) {
   margin-bottom: 8px !important;
+  line-height: 24px;
 }
 
 .nav-menu__accordion__item__list__item__link {

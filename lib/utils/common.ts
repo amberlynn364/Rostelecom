@@ -1,5 +1,7 @@
-export const addOverflowHiddenToBody = (): void => {
-  document.body.classList.add('overflow-hidden');
+export const addOverflowHiddenToBody = (paddingRight = ''): void => {
+  const body = document.body;
+  body.classList.add('overflow-hidden');
+  paddingRight && (body.style.paddingRight = paddingRight);
 };
 
 export const removeOverflowHiddenToBody = (): void => {
