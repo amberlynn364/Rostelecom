@@ -4,7 +4,7 @@ import { $catalogMenuIsOpen, closeCatalogMenu } from '@/context/modals';
 import { useLang } from '@/hooks/useLang';
 import { useMenuAnimation } from '@/hooks/useMenuAnimation';
 import { CatalogMenuLists } from '@/types/menu';
-import { useStore } from 'effector-react';
+import { useUnit } from 'effector-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useState } from 'react';
 import Header from './Header';
@@ -16,7 +16,7 @@ import Accordion from '../Accordion/Accordion';
 import Link from 'next/link';
 
 const CatalogMenu = () => {
-  const catalogMenuIsOpen = useStore($catalogMenuIsOpen);
+  const catalogMenuIsOpen = useUnit($catalogMenuIsOpen);
   const [activeList, setActiveList] = useState<CatalogMenuLists | null>(null);
   const { lang, translations } = useLang();
   const { itemVariants, sideVariants, popupZIndex } = useMenuAnimation(
@@ -82,7 +82,7 @@ const CatalogMenu = () => {
       <AnimatePresence>
         {catalogMenuIsOpen && (
           <motion.aside
-            initial={{ width: 0 }}
+            initial={{ width: 0, height: 0 }}
             animate={{
               width: '100%',
               height: '100%',
@@ -103,11 +103,6 @@ const CatalogMenu = () => {
               exit="closed"
               variants={sideVariants}
             >
-              <img
-                className="catalog-menu__bg"
-                src="/img/menu-bg-small.png"
-                alt="menu background"
-              />
               <motion.button
                 className="btn-reset catalog-menu__close"
                 variants={itemVariants}
