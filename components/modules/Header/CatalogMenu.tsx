@@ -84,7 +84,8 @@ const CatalogMenu = () => {
           <motion.aside
             initial={{ width: 0 }}
             animate={{
-              width: 'calc(100% - 48px)',
+              width: '100%',
+              height: '100%',
             }}
             exit={{
               width: 0,
