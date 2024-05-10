@@ -9,15 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@types/mongodb": "^4.0.7",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
     "effector": "^23.2.1",
     "effector-react": "^23.2.0",
     "framer-motion": "^11.1.7",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
     "react-slick": "^0.30.2",
     "sass": "^1.77.0",
+    "sharp": "^0.33.3",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.1"
   },

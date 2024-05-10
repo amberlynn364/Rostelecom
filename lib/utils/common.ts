@@ -11,9 +11,8 @@ export const removeOverflowHiddenToBody = (): void => {
 };
 
 export const getWindowWidth = (): { windowWidth: number } => {
-  const { innerWidth: windowWidth } = typeof window
-    ? window
-    : { innerWidth: 0 };
+  const { innerWidth: windowWidth } =
+    typeof window !== 'undefined' ? window : { innerWidth: 0 };
 
   return { windowWidth };
 };
