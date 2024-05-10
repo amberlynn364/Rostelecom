@@ -1,4 +1,5 @@
-import { MongoClient } from 'mongodb';
+import { Db, MongoClient } from 'mongodb';
+import { shuffle } from './common';
 
 export const getDbAndReqBody = async (
   clientPromise: Promise<MongoClient>,
@@ -12,4 +13,27 @@ export const getDbAndReqBody = async (
   }
 
   return { db };
+};
+
+export const getNewAndBestsellersGoods = async (
+  db: Db,
+  fieldName: 'isNew' | 'isBestseller'
+) => {
+  const clothes = await db.collection('cloth').find().toArray();
+  const accessories = await db.collection('accessories').find().toArray();
+
+  return shuffle([
+    ...clothes
+      .filter(
+        (item) =>
+          item[fieldName] && Object.values(item.sizes).some((value) => value)
+      )
+      .slice(0, 2),
+    ...accessories
+      .filter(
+        (item) =>
+          item[fieldName] && Object.values(item.sizes).some((value) => value)
+      )
+      .slice(0, 2),
+  ]);
 };

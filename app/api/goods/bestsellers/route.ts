@@ -8,5 +8,5 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const { db } = await getDbAndReqBody(clientPromise, null);
 
-  return NextResponse.json(await getNewAndBestsellersGoods(db, 'isNew'));
+  return NextResponse.json(await getNewAndBestsellersGoods(db, 'isBestseller'));
 }
