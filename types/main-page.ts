@@ -1,4 +1,5 @@
 import { StaticImageData } from 'next/image';
+import { Product } from './common';
 
 export interface HeroSlideProps {
   id?: number;
@@ -7,3 +8,9 @@ export interface HeroSlideProps {
 }
 
 export type HeroSlideTooltipProps = HeroSlideProps;
+
+export interface MainPageSectionProps {
+  title: string;
+  goods: Product[];
+  spinner: boolean;
+}
