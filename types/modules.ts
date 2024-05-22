@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Product } from './common';
 
 export interface AccordionProps {
   children: ReactNode;
@@ -20,4 +21,14 @@ export interface CatalogMenuButtonProps {
   name: string;
   isActive: boolean;
   handler: VoidFunction;
+}
+
+export interface ProductListItemProps {
+  item: Product;
+  title?: string;
+}
+
+export interface ProductLabelProps {
+  isNew: boolean;
+  isBestseller: boolean;
 }

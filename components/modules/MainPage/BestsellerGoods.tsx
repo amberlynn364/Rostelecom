@@ -9,7 +9,7 @@ const BestsellerGoods = () => {
   const goods = useUnit($bestsellerProducts);
   const spinner = useUnit(getBestsellerProductsFx.pending);
   const { lang, translations } = useLang();
-  console.log(goods);
+
   return (
     <MainPageSection
       title={translations[lang].main_page.bestsellers_title}
