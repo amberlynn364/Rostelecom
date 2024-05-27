@@ -12,7 +12,6 @@ const ProductItemActionBtn = ({
   callback,
   iconClass,
   marginBottom,
-  spinner,
   withTooltip = true,
 }: ProductItemActionBtnProps) => {
   const [open, setOpen] = useState(false);
