@@ -20,7 +20,6 @@ const QuickViewModal = () => {
   const { translations, lang } = useLang();
   const { product, selectedSize, setSelectedSize } = useCartAction();
   const images = useProductImages(product);
-  console.log(images);
 
   const handleCloseModal = () => {
     removeOverflowHiddenToBody();

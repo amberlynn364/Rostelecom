@@ -7,10 +7,15 @@ import MobileNavBar from '../modules/MobileNavBar/MobileNavBar';
 import { AnimatePresence, motion } from 'framer-motion';
 import SearchModal from '../modules/Header/SearchModal';
 import { useUnit } from 'effector-react';
-import { $searchModal, $showQuickModal } from '@/context/modals';
+import {
+  $searchModal,
+  $showQuickModal,
+  $showSizeTable,
+} from '@/context/modals';
 import { handleCloseSearchModal } from '@/lib/utils/common';
 import Footer from '../modules/Footer/Footer';
 import QuickViewModal from '../modules/QuickViewModal/QuickViewModal';
+import SizeTable from '../modules/SizeTable/SizeTable';
 
 interface LayoutProps {
   children: ReactNode;
@@ -20,6 +25,7 @@ const Layout = ({ children }: LayoutProps) => {
   const isMedia800 = useMediaQuery(800);
   const searchModal = useUnit($searchModal);
   const showQuickViewModal = useUnit($showQuickModal);
+  const showSizeTable = useUnit($showSizeTable);
   return (
     <>
       <Header />
@@ -33,6 +39,15 @@ const Layout = ({ children }: LayoutProps) => {
             exit={{ opacity: 0 }}
           >
             <SearchModal />
+          </motion.div>
+        )}
+        {showSizeTable && (
+          <motion.div
+            initial={{ opacity: 0, zIndex: 102 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <SizeTable />
           </motion.div>
         )}
       </AnimatePresence>

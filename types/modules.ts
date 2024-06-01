@@ -37,3 +37,11 @@ export interface ProductInfoLabelProps {
   color: string;
   // className: string;
 }
+
+export enum TableSizes {
+  S = 's',
+  M = 'm',
+  L = 'l',
+  XL = 'xl',
+  XXL = 'xxl',
+}

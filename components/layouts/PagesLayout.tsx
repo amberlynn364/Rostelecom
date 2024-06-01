@@ -3,8 +3,15 @@
 import { ReactNode } from 'react';
 import Layout from './Layout';
 import { useUnit } from 'effector-react';
-import { $showQuickModal, closeQuickViewModal } from '@/context/modals';
-import { removeOverflowHiddenToBody } from '@/lib/utils/common';
+import {
+  $showQuickModal,
+  $showSizeTable,
+  closeQuickViewModal,
+} from '@/context/modals';
+import {
+  closeSizeTableByCheck,
+  removeOverflowHiddenToBody,
+} from '@/lib/utils/common';
 
 interface PagesLayoutProps {
   children: ReactNode;
@@ -12,11 +19,14 @@ interface PagesLayoutProps {
 
 const PagesLayout = ({ children }: PagesLayoutProps) => {
   const showQuickViewModal = useUnit($showQuickModal);
+  const showSizeTable = useUnit($showSizeTable);
 
   const handleCloseQuickViewModal = () => {
     removeOverflowHiddenToBody();
     closeQuickViewModal();
   };
+
+  const handleCloseSizeTable = () => closeSizeTableByCheck(showSizeTable);
   return (
     <html lang="en">
       <body>
@@ -26,6 +36,12 @@ const PagesLayout = ({ children }: PagesLayoutProps) => {
             showQuickViewModal ? 'overlay-active' : ''
           }`}
           onClick={handleCloseQuickViewModal}
+        />
+        <div
+          className={`size-table-overlay ${
+            showSizeTable ? 'overlay-active' : ''
+          }`}
+          onClick={handleCloseSizeTable}
         />
       </body>
     </html>
